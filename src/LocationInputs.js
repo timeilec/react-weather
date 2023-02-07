@@ -1,10 +1,10 @@
 function LocationInputs(props) {
   return (
     <>
-      <input type="number" placeholder="Latitude" />
-      <input type="number" placeholder="Longitude" />
+      <input id="latitudeInput" type="number" placeholder="Latitude" />
+      <input id="longitudeInput" type="number" placeholder="Longitude" />
       <br />
-      <button onClick={props.submitFunction}>Submit</button>
+      <button id="submitButton" onClick={props.submitFunction}>Submit</button>
     </>
   );
 }

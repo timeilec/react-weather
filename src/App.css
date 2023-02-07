@@ -1,0 +1,12 @@
+body {
+    padding: 20px;
+    text-align: center;
+}
+
+#submitButton {
+    margin: 20px 0;
+}
+
+.recharts-wrapper {
+    margin-top: 50px;
+}

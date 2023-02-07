@@ -1,8 +1,10 @@
 import React from "react";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
 
 function TempChart (props) {
   const weatherData = props.weatherData;
+  console.log(props);
+  const visible = props.visible;
   let tempData, timeData;
   let chartData = [];
   
@@ -11,20 +13,31 @@ function TempChart (props) {
     tempData = weatherData["hourly"]["temperature_2m"];
     for(let i = 0; i < tempData.length; i++){
       chartData.push({
-        time: timeData[i],
-        temperature: tempData[i]
+        Time: timeData[i],
+        Temperature: tempData[i]
       });
     }
   }
 
-  return (
-    <LineChart width={600} height={300} data={chartData}>
-      <Line type="monotone" dataKey="temperature" stroke="#8884d8" />
-      <CartesianGrid stroke="#ccc" />
-      <XAxis dataKey="time" />
-      <YAxis />
-    </LineChart>
-  );
+  if (visible) {
+    return (
+      <>
+        <h2>Temperature History</h2>
+        <ResponsiveContainer width="90%" height={400}>
+          <LineChart data={chartData}>
+            <Line type="monotone" dataKey="Temperature" stroke="#8884d8" strokeWidth={3} dot={false} isAnimationActive={false} />
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="Time" />
+            <YAxis />
+            <Tooltip />
+          </LineChart>
+        </ResponsiveContainer>
+      </>
+    );
+  }
+  else {
+    return (<></>);
+  }
 }
 
 export default TempChart;
